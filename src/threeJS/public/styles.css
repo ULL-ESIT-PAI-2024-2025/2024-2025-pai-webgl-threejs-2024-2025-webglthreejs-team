@@ -1,0 +1,10 @@
+a {
+  display: block;
+}
+
+.canvas {
+  border: 10px solid rgb(143, 32, 32);
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
