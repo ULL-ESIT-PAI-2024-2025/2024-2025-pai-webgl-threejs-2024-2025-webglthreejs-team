@@ -40,15 +40,16 @@ export default class MultipleCamerasFactory implements CamerasFactory {
       cameras.push(camera);
       
     }
-    cameras[0].position.z = 5;
-    cameras[1].position.z = -12;
-    cameras[1].lookAt(0, 1, 0);
+    cameras[0].position.z = 6;
+    // cameras[1].lookAt(0, 0, 0);
+    cameras[1].position.z = -6;
+    cameras[1].lookAt(0, 0, 0);
     cameras[2].position.x = 6;
-    cameras[2].lookAt(0, 0, -2);
-    cameras[3].position.x = -5;
-    cameras[3].lookAt(0, 0, -2);
+    cameras[2].lookAt(0, 0, 0);
+    cameras[3].position.x = -12;
+    cameras[3].lookAt(0, 0, 0);
     cameras[4].position.y = 10;
-    cameras[4].lookAt(0, 0, -4);
+    cameras[4].lookAt(0, 0, 0);
     return cameras;
   }
 }

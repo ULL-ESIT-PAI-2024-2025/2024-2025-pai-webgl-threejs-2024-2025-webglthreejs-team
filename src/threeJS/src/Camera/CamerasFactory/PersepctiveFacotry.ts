@@ -33,8 +33,9 @@ export default class PerspectiveFactory implements CamerasFactory {
       PerspectiveFactory.near, 
       PerspectiveFactory.far
     );
-    camera.position.z = 5;
+    camera.position.x = 5;
     camera.position.y = 2;
+    camera.lookAt(0, 0, 0);
     return camera;
   }
 }

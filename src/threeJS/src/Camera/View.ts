@@ -14,7 +14,6 @@
  */
 
 import * as THREE from 'three';
-import Shapes from '../figures/Shapes/Shapes';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 /**
@@ -23,16 +22,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
  * and provides basic orbit controls for user interaction.
  */
 export default class CamerasView {
-  /**
-   * The Three.js scene object where all objects are rendered.
-   * @private
-   */
   private readonly scene: THREE.Scene = new THREE.Scene();
-
-  /**
-   * The Three.js WebGL renderer used to render the scene.
-   * @private
-   */
   private readonly renderer: THREE.WebGLRenderer = new THREE.WebGLRenderer({ alpha: true });
 
   /**
@@ -40,7 +30,7 @@ export default class CamerasView {
    * @param camera - The camera used to view the scene.
    * @param shapes - A single shape or an array of shapes to be added to the scene.
    */
-  constructor(private readonly camera: THREE.Camera, private shapes: Shapes[] | Shapes) {
+  constructor(private readonly camera: THREE.Camera, private shapes: THREE.Object3D) {
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(this.renderer.domElement);
     this.camera.position.z = 5;
@@ -48,15 +38,6 @@ export default class CamerasView {
     const controls = new OrbitControls(this.camera, this.renderer.domElement);
     controls.enableDamping = true;
   }
-
-  /**
-   * Gets the WebGL renderer instance.
-   * @returns The Three.js WebGL renderer.
-   */
-  public getRenderer(): THREE.WebGLRenderer {
-    return this.renderer;
-  }
-
   /**
    * Animates the scene by rendering it continuously.
    * Adds the shapes to the scene and renders the scene with the camera.
@@ -64,13 +45,7 @@ export default class CamerasView {
    */
   private animate(): void {
     requestAnimationFrame(() => this.animate());
-    if (this.shapes instanceof Array) {
-      for (const shape of this.shapes) {
-        this.scene.add(shape.getShape());
-      }
-    } else {
-      this.scene.add(this.shapes.getShape());
-    }
+    this.scene.add(this.shapes);
     this.renderer.render(this.scene, this.camera);
   }
 

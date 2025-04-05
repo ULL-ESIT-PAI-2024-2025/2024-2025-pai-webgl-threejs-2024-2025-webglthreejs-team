@@ -16,7 +16,6 @@
  */
 
 import * as THREE from 'three';
-import Shape from '../../figures/Shapes/Shapes';
 
 /**
  * Class representing a view with multiple cameras in a Three.js scene.
@@ -31,7 +30,7 @@ export default class MultipleCamerasView {
    * @param cameras - An array of `THREE.Camera` objects to be used for rendering the scene.
    * @param shapes - A single `Shape` or an array of `Shape` objects to be added to the scene.
    */
-  constructor(private readonly cameras: THREE.Camera[], private shapes: Shape[] | Shape) {
+  constructor(private readonly cameras: THREE.Camera[], private shapes: THREE.Object3D) {
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(this.renderer.domElement);
   }
@@ -45,11 +44,11 @@ export default class MultipleCamerasView {
     const width = window.innerWidth;
     const height = window.innerHeight;
     this.renderer.setScissorTest(true);
-
+  
     this.renderer.setViewport(0, 0, width / 2, height);
     this.renderer.setScissor(0, 0, width / 2, height);
     this.renderer.render(this.scene, this.cameras[0]);
-    
+
     this.renderer.setViewport(width / 2, 0, width / 2, height);
     this.renderer.setScissor(width / 2, 0, width / 2, height);
     this.renderer.render(this.scene, this.cameras[1]);
@@ -98,13 +97,7 @@ export default class MultipleCamerasView {
    * Adds the provided shapes to the scene before rendering.
    */
   public render(): void {
-    if (this.shapes instanceof Array) {
-      for (const shape of this.shapes) {
-        this.scene.add(shape.getShape());
-      }
-    } else {
-      this.scene.add(this.shapes.getShape());
-    }
+    this.scene.add(this.shapes);
     this.renderer.render(this.scene, this.cameras[0]);
     this.eventHandler();
   }

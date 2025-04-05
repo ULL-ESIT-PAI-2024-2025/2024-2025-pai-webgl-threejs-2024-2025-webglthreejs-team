@@ -1,8 +1,5 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import Cube from '../figures/Shapes/Cube';
-import BasePlane from '../figures/Shapes/BasePlane';
-import Sphere from '../figures/Shapes/Sphere';
 
 function main(): void {
   const scene = new THREE.Scene();
