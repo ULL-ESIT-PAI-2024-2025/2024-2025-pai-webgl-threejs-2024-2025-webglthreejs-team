@@ -1,9 +1,24 @@
+/**
+ * Universidad de La Laguna
+ * Escuela Superior de Ingeniería y Tecnología
+ * Grado en Ingeniería Informática
+ * Programación de Aplicaciones Interactivas
+ * 
+ * @summary This script loads a 3D model of a Mercedes car using Three.js and displays it in a scene. 
+ * 
+ * @since Sat 05 Apr 2025 
+ * @author Aarón Jano Barreto
+ * @author Roberto Padrón Castañeda
+ * @author Samuel Montoya Diaz
+ * 
+ * @see {@link https://github.com/ULL-ESIT-PAI-2024-2025/2024-2025-pai-webgl-threejs-2024-2025-webglthreejs-team.git}
+ */
+
+
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader.js';
-
-
 
 function main(): void {
   const scene = new THREE.Scene();

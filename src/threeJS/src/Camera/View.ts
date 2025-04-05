@@ -1,16 +1,19 @@
 /**
- * University of La Laguna  
- * Higher School of Engineering and Technology  
- * Degree in Computer Engineering  
- * Interactive Applications Programming  
- *
- * @authors  
- * Roberto Padrón Castañeda, Samuel Montoya Diaz, Aarón Janno Barreto
- * @since April 1, 2025
- * @description  
- * Represents the graphical view in a `<canvas>` element.  
+ * Universidad de La Laguna
+ * Escuela Superior de Ingeniería y Tecnología
+ * Grado en Ingeniería Informática
+ * Programación de Aplicaciones Interactivas
+ * 
+ * @summary Represents the graphical view in a `<canvas>` element.  
  * Responsible for handling user input events and  
  * drawing mathematical functions within a coordinate system.
+ * 
+ * @since  01 Apr 2025 
+ * @author Aarón Jano Barreto
+ * @author Roberto Padrón Castañeda
+ * @author Samuel Montoya Diaz
+ * 
+ * @see {@link https://github.com/ULL-ESIT-PAI-2024-2025/2024-2025-pai-webgl-threejs-2024-2025-webglthreejs-team.git}
  */
 
 import * as THREE from 'three';

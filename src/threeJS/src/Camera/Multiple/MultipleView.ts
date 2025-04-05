@@ -1,17 +1,19 @@
 /**
- * Universidad de La Laguna  
- * Escuela Superior de Ingeniería y Tecnología  
- * Grado en Ingeniería Informática  
- * Programación de Aplicaciones Interactivas  
- *
- * @authors  
- * Roberto Padrón Castañeda, Samuel Montoya Diaz, Aarón Janno Barreto
- * @since April 1, 2025 
- * @file MultipleView.ts
- * @description This file defines the `MultipleCamerasView` class, which manages rendering a 3D scene
+ * Universidad de La Laguna
+ * Escuela Superior de Ingeniería y Tecnología
+ * Grado en Ingeniería Informática
+ * Programación de Aplicaciones Interactivas
+ * 
+ * @summary This file defines the `MultipleCamerasView` class, which manages rendering a 3D scene
  * using multiple cameras in a Three.js environment. It provides functionality to switch between 
  * different camera views and render a divided view with two cameras simultaneously.
  * 
+ * @since  01 Apr 2025 
+ * @author Aarón Jano Barreto
+ * @author Roberto Padrón Castañeda
+ * @author Samuel Montoya Diaz
+ * 
+ * @see {@link https://github.com/ULL-ESIT-PAI-2024-2025/2024-2025-pai-webgl-threejs-2024-2025-webglthreejs-team.git}
  * @module MultipleCamerasView
  */
 

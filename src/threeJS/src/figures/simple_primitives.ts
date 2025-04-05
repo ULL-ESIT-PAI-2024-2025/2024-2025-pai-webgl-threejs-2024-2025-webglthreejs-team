@@ -1,13 +1,29 @@
+/**
+ * Universidad de La Laguna
+ * Escuela Superior de Ingeniería y Tecnología
+ * Grado en Ingeniería Informática
+ * Programación de Aplicaciones Interactivas
+ * 
+ * @summary This script sets up a Three.js scene with a camera, renderer, lighting, grid helper, 
+ * plane, and various 3D primitives. It also includes orbit controls for interactive navigation 
+ * and renders the scene to the browser window.
+ * 
+ * @since Sat 05 Apr 2025 
+ * @author Aarón Jano Barreto
+ * @author Roberto Padrón Castañeda
+ * @author Samuel Montoya Diaz
+ * 
+ * @see {@link https://github.com/ULL-ESIT-PAI-2024-2025/2024-2025-pai-webgl-threejs-2024-2025-webglthreejs-team.git}
+ */
+
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-
 
 function createOrbitControls(camera: THREE.PerspectiveCamera, renderer: THREE.WebGLRenderer): OrbitControls {
   const controls: OrbitControls = new OrbitControls(camera, renderer.domElement);
   controls.enableDamping = true;
   return controls;
 }
-
 
 function animate(controls: OrbitControls, scene: THREE.Scene, camera: THREE.PerspectiveCamera, renderer: THREE.WebGLRenderer): void {
   requestAnimationFrame(() => (animate(controls, scene, camera, renderer)));

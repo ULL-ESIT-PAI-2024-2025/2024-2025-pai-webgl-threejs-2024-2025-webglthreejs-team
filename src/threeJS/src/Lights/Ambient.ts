@@ -1,3 +1,20 @@
+/**
+ * Universidad de La Laguna
+ * Escuela Superior de Ingeniería y Tecnología
+ * Grado en Ingeniería Informática
+ * Programación de Aplicaciones Interactivas
+ * 
+ * @summary This script creates a scene with a cube and a plane using Three.js. 
+ * 
+ * @since Sat 05 Apr 2025 
+ * @author Aarón Jano Barreto
+ * @author Roberto Padrón Castañeda
+ * @author Samuel Montoya Diaz
+ * 
+ * @see {@link https://github.com/ULL-ESIT-PAI-2024-2025/2024-2025-pai-webgl-threejs-2024-2025-webglthreejs-team.git}
+ */
+
+
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import Cube from '../figures/Shapes/Cube';
