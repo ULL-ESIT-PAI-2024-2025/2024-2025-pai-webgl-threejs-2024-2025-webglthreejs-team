@@ -1,16 +1,30 @@
 import * as THREE from "three";
-const scene = new THREE.Scene();
 
-const camera = new THREE.PerspectiveCamera(
-  75, // Campo de visión (FOV - Field of View)
-  window.innerWidth / window.innerHeight, // Relación de aspecto
-  0.1, // Distancia mínima
-  1000 // Distancia máxima
-);
+function createScene(): void {
+  const scene = new THREE.Scene();
 
-const canvas = document.getElementById("miCanvas")!;
-const renderer = new THREE.WebGLRenderer({ canvas: canvas });
-renderer.setSize(window.innerWidth, window.innerHeight); // Tamaño del lienzo
+  const FOV: number = 75;
+  const ASPECT_RATIO: number = window.innerWidth / window.innerHeight;
+  const NEAR: number = 0.1;
+  const FAR: number = 1000;
+  const camera: THREE.PerspectiveCamera = new THREE.PerspectiveCamera(FOV, ASPECT_RATIO, NEAR, FAR);
 
-// document.body.appendChild(renderer.domElement); // Se añade el lienzo al body del HTML
-renderer.render(scene, camera); // Renderizar la escena desde la cámara
+  const miCanvas = document.getElementById("miCanvas")!;
+  const renderer = new THREE.WebGLRenderer({ canvas: miCanvas });
+
+  renderer.domElement.classList.add("fullscreen");
+  const RIGHT_MARGIN: number = 35;
+  const CANVAS_WIDTH: number = window.innerWidth - RIGHT_MARGIN;
+  renderer.setSize(CANVAS_WIDTH, window.innerHeight); 
+
+  const ELEMENT_TO_ADD_AFTER: string = "h1";
+  const title: HTMLElement = document.querySelector(ELEMENT_TO_ADD_AFTER)!;
+  title.after(renderer.domElement);
+  renderer.render(scene, camera); 
+}
+
+function main(): void {
+  createScene();
+}
+
+main();
