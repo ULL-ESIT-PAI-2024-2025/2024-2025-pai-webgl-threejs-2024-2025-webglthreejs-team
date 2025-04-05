@@ -1,28 +1,15 @@
 import * as THREE from 'three';
-export default class Sphere {
-  private sphere: THREE.Mesh;
+import Shape from './Shapes';
+
+export default class Sphere extends Shape {
+  private static readonly segments: number = 32;
   constructor(size: number, texture: THREE.Material) {
-    this.sphere = new THREE.Mesh(
-      new THREE.SphereGeometry(size, 32, 32),
-      texture
-    );
+    super(size, texture);
   }
 
-  public setPosition(positionX: number, postionY: number, postionZ: number): void {
-    this.sphere.position.set(positionX, postionY, postionZ);
-  }
-
-  public setRotation(positionX: number, positionY: number, positionZ: number): void {
-    this.sphere.rotation.set(positionX, positionY, positionZ);
-  }
-
-  public Move(positionX: number, positionY: number, positionZ: number): void {   
-    this.sphere.position.x += positionX;
-    this.sphere.position.y += positionY;
-    this.sphere.position.z += positionZ;
-  }
-
-  public getSphere(): THREE.Mesh {
-    return this.sphere;
+  protected override buildShape(size: number, texture: THREE.Material): THREE.Mesh {
+    const geometry = new THREE.SphereGeometry(size, Sphere.segments, Sphere.segments);
+    const sphere = new THREE.Mesh(geometry, texture);
+    return sphere;
   }
 }
