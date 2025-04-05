@@ -16,10 +16,10 @@ function main(): void {
   scene.add(ambientLight);
 
   let cube: Cube = new Cube(1, new THREE.MeshPhongMaterial({ color: 'white' }));
-  scene.add(cube.getCube());
+  scene.add(cube.getShape());
   let plane: BasePlane = new BasePlane(10, new THREE.MeshPhongMaterial({ color: 'grey' }));
   plane.setPosition(0, -1, 0);
-  scene.add(plane.getPlane());
+  scene.add(plane.getShape());
 
   function animate() {
     requestAnimationFrame(animate);

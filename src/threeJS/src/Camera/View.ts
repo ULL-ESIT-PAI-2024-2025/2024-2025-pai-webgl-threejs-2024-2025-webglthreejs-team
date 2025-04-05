@@ -1,10 +1,45 @@
+/**
+ * University of La Laguna  
+ * Higher School of Engineering and Technology  
+ * Degree in Computer Engineering  
+ * Interactive Applications Programming  
+ *
+ * @authors  
+ * Roberto Padrón Castañeda, Samuel Montoya Diaz, Aarón Janno Barreto
+ * @since April 1, 2025
+ * @description  
+ * Represents the graphical view in a `<canvas>` element.  
+ * Responsible for handling user input events and  
+ * drawing mathematical functions within a coordinate system.
+ */
+
 import * as THREE from 'three';
 import Shapes from '../figures/Shapes/Shapes';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
+/**
+ * Class representing a camera view in a Three.js scene.
+ * This class is responsible for rendering a scene with a camera and shapes,
+ * and provides basic orbit controls for user interaction.
+ */
 export default class CamerasView {
+  /**
+   * The Three.js scene object where all objects are rendered.
+   * @private
+   */
   private readonly scene: THREE.Scene = new THREE.Scene();
+
+  /**
+   * The Three.js WebGL renderer used to render the scene.
+   * @private
+   */
   private readonly renderer: THREE.WebGLRenderer = new THREE.WebGLRenderer({ alpha: true });
+
+  /**
+   * Creates an instance of CamerasView.
+   * @param camera - The camera used to view the scene.
+   * @param shapes - A single shape or an array of shapes to be added to the scene.
+   */
   constructor(private readonly camera: THREE.Camera, private shapes: Shapes[] | Shapes) {
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(this.renderer.domElement);
@@ -14,8 +49,19 @@ export default class CamerasView {
     controls.enableDamping = true;
   }
 
-  public getRenderer(): THREE.WebGLRenderer { return this.renderer; }
+  /**
+   * Gets the WebGL renderer instance.
+   * @returns The Three.js WebGL renderer.
+   */
+  public getRenderer(): THREE.WebGLRenderer {
+    return this.renderer;
+  }
 
+  /**
+   * Animates the scene by rendering it continuously.
+   * Adds the shapes to the scene and renders the scene with the camera.
+   * @private
+   */
   private animate(): void {
     requestAnimationFrame(() => this.animate());
     if (this.shapes instanceof Array) {
@@ -28,6 +74,9 @@ export default class CamerasView {
     this.renderer.render(this.scene, this.camera);
   }
 
+  /**
+   * Starts the rendering process by initiating the animation loop.
+   */
   public render(): void {
     this.animate();
   }

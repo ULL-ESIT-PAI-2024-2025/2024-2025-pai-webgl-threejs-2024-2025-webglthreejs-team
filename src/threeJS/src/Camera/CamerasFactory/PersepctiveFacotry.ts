@@ -1,3 +1,15 @@
+/**
+ * Universidad de La Laguna  
+ * Escuela Superior de Ingeniería y Tecnología  
+ * Grado en Ingeniería Informática  
+ * Programación de Aplicaciones Interactivas  
+ *
+ * @authors  
+ * Roberto Padrón Castañeda, Samuel Montoya Diaz, Aarón Janno Barreto
+ * @since April 1, 2025
+ * @description Creates a predefinded perspective camera 
+ */
+
 import * as THREE from 'three';
 import CamerasFactory from './CamerasFactory';
 
@@ -7,6 +19,13 @@ export default class PerspectiveFactory implements CamerasFactory {
   private static readonly near: number = 0.1;
   private static readonly far: number = 500;
 
+  /**
+   * Creates and returns a new perspective camera with predefined settings.
+   *
+   * @returns {THREE.Camera} A perspective camera instance configured with the
+   * specified field of view, aspect ratio, near clipping plane, and far clipping plane.
+   * The camera's position is set to z = 5 and y = 2.
+   */
   public createCameras(): THREE.Camera {
     const camera = new THREE.PerspectiveCamera(
       PerspectiveFactory.fov, 

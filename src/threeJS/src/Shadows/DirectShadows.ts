@@ -24,16 +24,16 @@ function main(): void {
   let sphere: Sphere = new Sphere(1, new THREE.MeshLambertMaterial({ color: 'white' }));
   
   // Sombras para la esfera
-  sphere.getSphere().castShadow = true;
+  sphere.getShape().castShadow = true;
 
-  scene.add(sphere.getSphere());
+  scene.add(sphere.getShape());
   let plane: BasePlane = new BasePlane(10, new THREE.MeshLambertMaterial({ color: 'grey' }));
 
   // Sombras para el plano
-  plane.getPlane().receiveShadow = true;
+  plane.getShape().receiveShadow = true;
 
   plane.setPosition(0, -2, 0);
-  scene.add(plane.getPlane());
+  scene.add(plane.getShape());
   function animate() {
     requestAnimationFrame(animate);
     renderer.render(scene, camera);
