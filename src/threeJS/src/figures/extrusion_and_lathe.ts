@@ -22,8 +22,15 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { GUI } from 'three/examples/jsm/libs/lil-gui.module.min';
 
+/**
+ * Adds an extrusion shape to the scene with configurable parameters via a GUI.
+ * The extrusion is based on a 2D square shape and can have its depth, bevel thickness, bevel size, and bevel segments adjusted.
+ * 
+ * @param {THREE.Scene} scene - The Three.js scene to which the extrusion will be added.
+ * @param {GUI} gui - The GUI object to add the controls for modifying the extrusion parameters.
+ */
 function addExtrusionWithGUI(scene: THREE.Scene, gui: GUI): void {
-  const SHAPE: THREE.Shape  = new THREE.Shape();
+  const SHAPE: THREE.Shape = new THREE.Shape();
   SHAPE.moveTo(0, 0);
   SHAPE.lineTo(1, 0);
   SHAPE.lineTo(1, 1);
@@ -47,7 +54,6 @@ function addExtrusionWithGUI(scene: THREE.Scene, gui: GUI): void {
     extrudeMesh.position.set(3, 0, 0);
     scene.add(extrudeMesh);
   });
-
   extrudeFolder.add(extrudeParams, 'depth', 0.1, 5, 0.1).onChange((value) => {
     scene.remove(extrudeMesh);
     extrudeSettings.depth = value;
@@ -72,9 +78,18 @@ function addExtrusionWithGUI(scene: THREE.Scene, gui: GUI): void {
     extrudeMesh.position.set(3, 0, 0);
     scene.add(extrudeMesh);
   });
+
   extrudeFolder.open();
 }
 
+/**
+ * Adds a lathe geometry to the scene with configurable radial points, scale, and phi length.
+ * The lathe can be modified using GUI controls that allow the user to change the number of segments,
+ * scaling factor, and the angular length of the shape.
+ * 
+ * @param {THREE.Scene} scene - The Three.js scene to which the lathe will be added.
+ * @param {GUI} gui - The GUI object for adding controls to adjust the lathe parameters.
+ */
 function addLatheWithGUI(scene: THREE.Scene, gui: GUI): void {
   const radialPoints: THREE.Vector2[] = [];
   for (let i = 0; i < 10; i++) {
@@ -88,7 +103,6 @@ function addLatheWithGUI(scene: THREE.Scene, gui: GUI): void {
   latheMesh.scale.set(0.5, 0.5, 0.5);
   scene.add(latheMesh);
 
-  // Radial Form Controls
   const radialFolder = gui.addFolder('Radial Form');
   const radialParams = { segments: 32, scale: 0.5, phiLength: 2 * Math.PI };
   radialFolder.add(radialParams, 'segments', 3, 64, 1).onChange((value) => {
@@ -120,56 +134,106 @@ function addLatheWithGUI(scene: THREE.Scene, gui: GUI): void {
   radialFolder.open();
 }
 
+/**
+ * Creates and returns an OrbitControls instance for the camera.
+ * This allows the user to interact with the 3D scene by rotating, zooming, and panning the camera.
+ * 
+ * @param {THREE.PerspectiveCamera} camera - The camera to be controlled by the OrbitControls.
+ * @param {THREE.WebGLRenderer} renderer - The WebGL renderer to which the controls will be attached.
+ * @returns {OrbitControls} - The OrbitControls instance for interacting with the camera.
+ */
 function createOrbitControls(camera: THREE.PerspectiveCamera, renderer: THREE.WebGLRenderer): OrbitControls {
   const controls: OrbitControls = new OrbitControls(camera, renderer.domElement);
   controls.enableDamping = true;
   return controls;
 }
 
+/**
+ * Animation loop for updating the scene and rendering it with the current camera position.
+ * The controls are updated in each frame to reflect user input.
+ * 
+ * @param {OrbitControls} controls - The OrbitControls instance to update the camera position.
+ * @param {THREE.Scene} scene - The Three.js scene to be rendered.
+ * @param {THREE.PerspectiveCamera} camera - The camera used for rendering the scene.
+ * @param {THREE.WebGLRenderer} renderer - The WebGL renderer to render the scene.
+ */
 function animate(controls: OrbitControls, scene: THREE.Scene, camera: THREE.PerspectiveCamera, renderer: THREE.WebGLRenderer): void {
-  requestAnimationFrame(() => (animate(controls, scene, camera, renderer)));
+  requestAnimationFrame(() => animate(controls, scene, camera, renderer));
   controls.update();
   renderer.render(scene, camera);
 }
 
+/**
+ * Creates and returns a perspective camera with default settings.
+ * The camera is used to view the 3D scene.
+ * 
+ * @returns {THREE.PerspectiveCamera} - The PerspectiveCamera instance.
+ */
 function createCamera(): THREE.PerspectiveCamera {
-  const FOV: number = 75;
-  const ASPECT_RATIO: number = window.innerWidth / window.innerHeight;
-  const NEAR: number = 0.1;
-  const FAR: number = 1000;
+  const FOV: number = 75; 
+  const ASPECT_RATIO: number = window.innerWidth / window.innerHeight;  
+  const NEAR: number = 0.1;  
+  const FAR: number = 1000;  
   return new THREE.PerspectiveCamera(FOV, ASPECT_RATIO, NEAR, FAR);
 }
 
+/**
+ * Creates a WebGL renderer and sets the size of the rendering canvas.
+ * The renderer is used to display the scene on the screen.
+ * 
+ * @returns {THREE.WebGLRenderer} - The WebGLRenderer instance.
+ */
 function createRenderer(): THREE.WebGLRenderer {
   const renderer: THREE.WebGLRenderer = new THREE.WebGLRenderer();
   renderer.domElement.classList.add("fullscreen");
   const RIGHT_MARGIN: number = 35;
   const CANVAS_WIDTH: number = window.innerWidth - RIGHT_MARGIN;
-  renderer.setSize(CANVAS_WIDTH, window.innerHeight); 
+  renderer.setSize(CANVAS_WIDTH, window.innerHeight);
   return renderer;
 }
 
+/**
+ * Adds the renderer's DOM element to the webpage after a specified element.
+ * 
+ * @param {THREE.WebGLRenderer} renderer - The WebGL renderer whose DOM element will be added.
+ */
 function addRendererToDOM(renderer: THREE.WebGLRenderer): void {
   const ELEMENT_TO_ADD_AFTER: string = "h1";
   const title: HTMLElement = document.querySelector(ELEMENT_TO_ADD_AFTER)!;
   title.after(renderer.domElement);
 }
 
+/**
+ * Adds a grid helper to the scene to aid in visualizing the 3D space.
+ * 
+ * @param {THREE.Scene} scene - The scene to which the grid helper will be added.
+ */
 function addGridHelper(scene: THREE.Scene): void {
   const gridHelper: THREE.GridHelper = new THREE.GridHelper(20, 20);
-  gridHelper.position.y = -1.1; 
+  gridHelper.position.y = -1.1;
   scene.add(gridHelper);
 }
 
+/**
+ * Adds a plane to the scene that acts as the ground for other objects.
+ * The plane is positioned below the origin.
+ * 
+ * @param {THREE.Scene} scene - The scene to which the plane will be added.
+ */
 function addPlane(scene: THREE.Scene): void {
   const planeGeometry: THREE.PlaneGeometry = new THREE.PlaneGeometry(20, 20);
   const planeMaterial: THREE.MeshStandardMaterial = new THREE.MeshStandardMaterial({ color: 0x808080, side: THREE.DoubleSide });
   const plane: THREE.Mesh = new THREE.Mesh(planeGeometry, planeMaterial);
-  plane.rotation.x = -Math.PI / 2;
+  plane.rotation.x = -Math.PI / 2;  
   plane.position.y = -1.1; 
   scene.add(plane);
 }
 
+/**
+ * Adds ambient and directional lighting to the scene for proper illumination.
+ * 
+ * @param {THREE.Scene} scene - The scene to which the lights will be added.
+ */
 function addLighting(scene: THREE.Scene): void {
   const ambientLight: THREE.AmbientLight = new THREE.AmbientLight(0xffffff, 0.5);
   scene.add(ambientLight);
@@ -179,6 +243,10 @@ function addLighting(scene: THREE.Scene): void {
   scene.add(directionalLight);
 }
 
+/**
+ * The main function that sets up the scene, camera, renderer, lights, and interactive GUI.
+ * It also starts the animation loop.
+ */
 function main(): void {
   const SCENE: THREE.Scene = new THREE.Scene();
   const CAMERA: THREE.PerspectiveCamera = createCamera();

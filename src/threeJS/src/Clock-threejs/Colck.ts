@@ -19,17 +19,36 @@ import ClockFace from "./ClockParts/ClockFace";
 import ClockCase from "./ClockParts/ClockCase";
 import * as THREE from 'three';
 
-export default class Clock { 
+/**
+ * Class representing a complete clock composed of hands, face, and case.
+ */
+export default class Clock {
+  /**
+   * Creates a new Clock instance.
+   * @param clockHands - The ClockHands component responsible for showing and updating time.
+   * @param clockFace - The ClockFace component responsible for the clock's visual face.
+   * @param clockCase - The ClockCase component representing the body/frame of the clock.
+   */
   constructor(
     private readonly clockHands: ClockHands,
     private readonly clockFace: ClockFace,
     private readonly clockCase: ClockCase
-  ) { }
-  public updateClock(): void { this.clockHands.updateClockHands(); }
+  ) {}
 
-  public render(scene: THREE.Scene): void { 
-    this.clockFace.renderClockFace(scene); 
-    this.clockCase.renderClockCase(scene); 
-    this.clockHands.renderClockHands(scene); 
+  /**
+   * Updates the position of the clock hands based on the current time.
+   */
+  public updateClock(): void {
+    this.clockHands.updateClockHands();
+  }
+
+  /**
+   * Renders the clock components (face, case, and hands) into the given scene.
+   * @param scene - The Three.js scene to which the clock will be added.
+   */
+  public render(scene: THREE.Scene): void {
+    this.clockFace.renderClockFace(scene);
+    this.clockCase.renderClockCase(scene);
+    this.clockHands.renderClockHands(scene);
   }
 }

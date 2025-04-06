@@ -14,7 +14,6 @@
  * @see {@link https://github.com/ULL-ESIT-PAI-2024-2025/2024-2025-pai-webgl-threejs-2024-2025-webglthreejs-team.git}
  */
 
-
 import * as THREE from 'three';
 import PerspectiveFactory from '../Camera/CamerasFactory/PersepctiveFacotry';
 import View from './View';

@@ -14,10 +14,19 @@
  * @see {@link https://github.com/ULL-ESIT-PAI-2024-2025/2024-2025-pai-webgl-threejs-2024-2025-webglthreejs-team.git}
  */
 
-import Hand from "./Hand";
-import ClockHands from "./ClockHands";
+import Hand from "../Hand";
+import ClockHands from "../ClockHands";
 
+/**
+ * Builder class responsible for creating and assembling clock hands.
+ */
 export default class ClockHandsBuilder {
+  /**
+   * Builds and returns a ClockHands object with hour, minute, and second hands.
+   * @param width - The base width for the hour hand. Minute and second hands will be slightly thinner.
+   * @param length - The base length for the hour and minute hands. The second hand will be longer.
+   * @returns A fully assembled ClockHands instance.
+   */
   public static buildClockHands(width: number, length: number): ClockHands {
     const hourHand = new Hand(width, length, 'black');   
     const minuteHand = new Hand(width - 0.05, length, 'grey');

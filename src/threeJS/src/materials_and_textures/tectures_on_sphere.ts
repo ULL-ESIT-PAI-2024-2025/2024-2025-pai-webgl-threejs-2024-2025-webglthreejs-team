@@ -36,8 +36,8 @@ const link: HTMLElement = document.querySelector('a')!;
 document.body.insertBefore(renderer.domElement, link);
 
 // Asegurar que el canvas respete CSS
-renderer.domElement.style.height = "100vh";
-renderer.domElement.style.width = "97vw";
+renderer.domElement.style.height = '100vh';
+renderer.domElement.style.width = '97vw';
 
 // Control de órbita
 const controls = new OrbitControls(camera, renderer.domElement);

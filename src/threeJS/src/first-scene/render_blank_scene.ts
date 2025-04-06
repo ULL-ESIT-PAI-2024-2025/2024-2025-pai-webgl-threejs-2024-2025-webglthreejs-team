@@ -16,7 +16,7 @@
  */
 
 
-import * as THREE from "three";
+import * as THREE from 'three';
 
 function createCamera(): THREE.PerspectiveCamera {
   const FOV: number = 75;
@@ -28,7 +28,7 @@ function createCamera(): THREE.PerspectiveCamera {
 
 function createRenderer(): THREE.WebGLRenderer {
   const renderer: THREE.WebGLRenderer = new THREE.WebGLRenderer();
-  renderer.domElement.classList.add("fullscreen");
+  renderer.domElement.classList.add('fullscreen');
   const RIGHT_MARGIN: number = 35;
   const CANVAS_WIDTH: number = window.innerWidth - RIGHT_MARGIN;
   renderer.setSize(CANVAS_WIDTH, window.innerHeight); 
@@ -36,7 +36,7 @@ function createRenderer(): THREE.WebGLRenderer {
 }
 
 function addRendererToDOM(renderer: THREE.WebGLRenderer): void {
-  const ELEMENT_TO_ADD_AFTER: string = "h1";
+  const ELEMENT_TO_ADD_AFTER: string = 'h1';
   const title: HTMLElement = document.querySelector(ELEMENT_TO_ADD_AFTER)!;
   title.after(renderer.domElement);
 }
