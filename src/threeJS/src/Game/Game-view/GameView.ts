@@ -43,7 +43,12 @@ export class GameView {
 
     this.scene = scene;
     
-    camera.position.z = 5;
+    const loader = new THREE.TextureLoader();
+      loader.load('/Game/sky.jpg', (texture) => {
+      this.scene.background = texture;
+    });
+
+    camera.position.set(0, 0, 5);
     camera.lookAt(0, 0, 0);
 
     const ambientLight = new THREE.AmbientLight('white', 0.5); 
@@ -53,13 +58,14 @@ export class GameView {
     directionalLight.position.set(5, 10, 7.5);
     this.scene.add(directionalLight);
 
+
     //floor
-    const planeGeometry = new THREE.PlaneGeometry(1000, 1000);
-    const planeMaterial = new THREE.MeshStandardMaterial({ color: 'gray', side: THREE.DoubleSide });
+    const planeGeometry = new THREE.PlaneGeometry(75, 75);
+    const planeMaterial = new THREE.MeshStandardMaterial({ color: 'green', side: THREE.DoubleSide });
     const plane = new THREE.Mesh(planeGeometry, planeMaterial);
     plane.rotation.x = -Math.PI / 2;
     plane.position.y = -4;
-    this.scene.add(plane);
+    this.scene.add(plane); 
 
     this.sceneElements.push(ambientLight);
     this.sceneElements.push(directionalLight);

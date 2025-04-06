@@ -17,7 +17,3 @@ npx vite
 ## Note
 
 If the OBJ loader gets stuck, try running `npx vite` again and reopen the application.
-
----
-
-This is a draft version of the README. It should be improved with additional details and instructions.
