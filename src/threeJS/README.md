@@ -1,11 +1,23 @@
-# Paso 1
+# Step 1: Install Dependencies
 
-npm i
+Run the following command to install the necessary dependencies:
 
-# Paso 2
+```bash
+npm install
+```
 
+# Step 2: Start the Development Server
+
+Start the development server using the following command:
+
+```bash
 npx vite
+```
 
-## Cuidado
+## Note
 
-si el Obj load se te queda pillado haz npx vite de nuevo y prueba a volver a abrirlo (completar este readme mejor esto es boceto)
+If the OBJ loader gets stuck, try running `npx vite` again and reopen the application.
+
+---
+
+This is a draft version of the README. It should be improved with additional details and instructions.
