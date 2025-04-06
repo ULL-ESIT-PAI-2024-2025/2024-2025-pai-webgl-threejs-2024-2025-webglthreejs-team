@@ -44,8 +44,9 @@ export class GameView {
     this.scene = scene;
     
     const loader = new THREE.TextureLoader();
-      loader.load('/Game/sky.jpg', (texture) => {
+    loader.load('/Game/sky.jpg', (texture) => {
       this.scene.background = texture;
+      this.renderer.render(this.scene, this.camera); // Render the scene after the texture is loaded
     });
 
     camera.position.set(0, 0, 5);
