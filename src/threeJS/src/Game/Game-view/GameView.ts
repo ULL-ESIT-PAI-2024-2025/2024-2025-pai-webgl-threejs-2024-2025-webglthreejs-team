@@ -31,21 +31,25 @@ export class GameView {
   private sceneElements: THREE.Object3D[] = [];
 
   constructor(scene: THREE.Scene, camera: THREE.PerspectiveCamera, renderer: THREE.WebGLRenderer, maxTime: number = 69) {
+    
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap; 
+    
     this.scene = scene;
     
     camera.position.z = 5;
     camera.lookAt(0, 0, 0);
 
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5); 
+    const ambientLight = new THREE.AmbientLight('white', 0.5); 
     this.scene.add(ambientLight);
 
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 30); 
+    const directionalLight = new THREE.DirectionalLight('white', 30); 
     directionalLight.position.set(5, 10, 7.5);
     this.scene.add(directionalLight);
 
     //floor
     const planeGeometry = new THREE.PlaneGeometry(1000, 1000);
-    const planeMaterial = new THREE.MeshStandardMaterial({ color: 0x808080, side: THREE.DoubleSide });
+    const planeMaterial = new THREE.MeshStandardMaterial({ color: 'gray', side: THREE.DoubleSide });
     const plane = new THREE.Mesh(planeGeometry, planeMaterial);
     plane.rotation.x = -Math.PI / 2;
     plane.position.y = -4;
@@ -61,6 +65,7 @@ export class GameView {
     this.scoreAndTimeContainer.append(this.scoreElement, this.timeElement, this.startButton, this.resetButton); 
     this.rootElement.append(this.gameContainer);
     this.gameContainer.append(renderer.domElement);
+    renderer.domElement.className = 'gameCanvas';
     
     this.scoreElement.textContent = 'Score: 0';
     this.timeElement.textContent = 'Time: ' + maxTime;

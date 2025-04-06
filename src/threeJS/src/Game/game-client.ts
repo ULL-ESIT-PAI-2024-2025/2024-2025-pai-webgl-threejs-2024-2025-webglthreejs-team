@@ -19,7 +19,7 @@ import { GameModel } from './Game-model/GameModel.js';
 import { GameView } from './Game-view/GameView.js';
 import { GameController } from './Game-controller/GameController.js';
 
-import * as THREE from "three";
+import * as THREE from 'three';
 
 function main() {
   const SCENE = new THREE.Scene();

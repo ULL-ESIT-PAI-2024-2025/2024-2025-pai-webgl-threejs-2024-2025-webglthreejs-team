@@ -68,9 +68,9 @@ export class GameModel {
   private randomBall(): { ball: THREE.Mesh, value: number } {
     let value = 100;
     let size = Math.random() * (this.maximunBallSize - this.minimunBallSize) + this.minimunBallSize;
-    value *= size;
+    value *= 1 / size;
     const geometry = new THREE.SphereGeometry(size, 16, 16);
-    const material = new THREE.MeshStandardMaterial({ color: 0x00ff00 });
+    const material = new THREE.MeshPhongMaterial({ color: 'green' });
     let ball = new THREE.Mesh(geometry, material);
 
     const MINIMAL_DISTANCE_FROM_CAMERA: number = 2;
