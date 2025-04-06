@@ -4,7 +4,7 @@
  * Grado en Ingeniería Informática
  * Programación de Aplicaciones Interactivas
  * 
- * @summary This script demonstrates the use of different materials in Three.js. 
+ * @summary This script demonstrates the use of different materials.
  * 
  * @since Sat 05 Apr 2025 
  * @author Aarón Jano Barreto
