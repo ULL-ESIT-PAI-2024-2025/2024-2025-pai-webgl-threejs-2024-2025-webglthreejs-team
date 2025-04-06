@@ -2,7 +2,7 @@
 
 ## WebGL 
 
-Execute info
+Find the execute info in `WebGL/README.md`
 
 ## Three.js
 

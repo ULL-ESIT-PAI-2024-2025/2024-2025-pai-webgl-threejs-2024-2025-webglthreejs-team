@@ -39,7 +39,11 @@ class Triangle {
      * @description Initializes the vertex buffer with the coordinates of the triangle.
      */
     initBuffers() {
-        const vertices = [-0.5, 0.5, -0.5, -0.5, 0.0, -0.5];
+        const vertices = [
+            -0.5, 0.5,
+            -0.5, -0.5,
+            0.0, -0.5
+        ];
         const vertexBuffer = this.context.createBuffer();
         this.context.bindBuffer(this.context.ARRAY_BUFFER, vertexBuffer);
         this.context.bufferData(this.context.ARRAY_BUFFER, new Float32Array(vertices), this.context.STATIC_DRAW);
