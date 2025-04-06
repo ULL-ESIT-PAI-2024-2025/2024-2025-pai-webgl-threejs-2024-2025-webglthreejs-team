@@ -81,7 +81,7 @@ export default class View {
    * @private
    * @param animation - Optional callback to animate the lights before each render frame.
    */
-  private animate(animation: (lights: THREE.Group) => void | undefined): void {
+  private animate(animation: (lights: THREE.Group) => void): void {
     requestAnimationFrame(() => this.animate(animation));
     if (animation) animation(this.lights);
     this.renderer.render(this.scene, this.camera);
@@ -91,7 +91,7 @@ export default class View {
    * Starts the rendering process by initiating the animation loop.
    * @param animation - Optional callback to animate the lights each frame.
    */
-  public render(animation: (lights: THREE.Group) => void | undefined): void {
+  public render(animation: (lights: THREE.Group) => void): void {
     this.animate(animation);
   }
 }
