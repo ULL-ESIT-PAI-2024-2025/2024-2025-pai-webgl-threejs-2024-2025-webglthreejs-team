@@ -83,7 +83,7 @@ export default class View {
    */
   private animate(animation: (lights: THREE.Group) => void): void {
     requestAnimationFrame(() => this.animate(animation));
-    if (animation) animation(this.lights);
+    animation(this.lights);
     this.renderer.render(this.scene, this.camera);
   }
 
