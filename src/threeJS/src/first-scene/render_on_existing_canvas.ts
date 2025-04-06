@@ -15,9 +15,13 @@
  * @see {@link https://github.com/ULL-ESIT-PAI-2024-2025/2024-2025-pai-webgl-threejs-2024-2025-webglthreejs-team.git}
  */
 
-
 import * as THREE from 'three';
 
+/**
+ * Function to create a perspective camera.
+ * @returns {THREE.PerspectiveCamera} A perspective camera with a field of view of 75 degrees,
+ * an aspect ratio based on the window size, and a near and far clipping plane of 0.1 and 1000 units, respectively.
+ */
 function createScene(): void {
   const scene = new THREE.Scene();
 
@@ -41,6 +45,9 @@ function createScene(): void {
   renderer.render(scene, camera); 
 }
 
+/**
+ * Main function to set up the scene, camera, and renderer.
+ */
 function main(): void {
   createScene();
 }

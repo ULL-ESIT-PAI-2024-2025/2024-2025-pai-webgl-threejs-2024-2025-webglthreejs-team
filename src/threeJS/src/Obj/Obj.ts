@@ -20,11 +20,21 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader.js';
 
+/**
+ * 
+ * @param scene - The scene to be rendered
+ * @param camera - The camera to be used
+ * @param renderer - The renderer to be used
+ * @description This function animates the scene by rendering it in a loop.
+ */
 function animate(scene: THREE.Scene, camera: THREE.PerspectiveCamera, renderer: THREE.WebGLRenderer): void {
   requestAnimationFrame(() => animate);
   renderer.render(scene, camera);
 }
 
+/**
+ * Main function to initialize the scene, camera, renderer, and load the 3D model
+ */
 function main(): void {
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(75, window.innerWidth /window.innerHeight, 0.1, 1000);

@@ -206,6 +206,9 @@ function addLighting(scene: THREE.Scene): void {
   scene.add(directionalLight);
 }
 
+/**
+ * Main function to initialize the scene, camera, renderer, and controls.
+ */
 function main(): void {
   const SCENE: THREE.Scene = new THREE.Scene();
   const CAMERA: THREE.PerspectiveCamera = createCamera();

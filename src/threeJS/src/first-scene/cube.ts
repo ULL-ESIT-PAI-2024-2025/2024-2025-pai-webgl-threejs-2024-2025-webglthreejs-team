@@ -15,9 +15,13 @@
  * @see {@link https://github.com/ULL-ESIT-PAI-2024-2025/2024-2025-pai-webgl-threejs-2024-2025-webglthreejs-team.git}
  */
 
-
 import * as THREE from 'three';
 
+/**
+ * Function to create a perspective camera.
+ * @returns {THREE.PerspectiveCamera} A perspective camera with a field of view of 75 degrees,
+ * an aspect ratio based on the window size, and a near and far clipping plane of 0.1 and 1000 units, respectively.
+ */
 function createCamera(): THREE.PerspectiveCamera {
   const FOV: number = 75;
   const ASPECT_RATIO: number = window.innerWidth / window.innerHeight;
@@ -26,6 +30,10 @@ function createCamera(): THREE.PerspectiveCamera {
   return new THREE.PerspectiveCamera(FOV, ASPECT_RATIO, NEAR, FAR);
 }
 
+/**
+ * Function to create a WebGL renderer.
+ * @returns {THREE.WebGLRenderer} A WebGL renderer with a size based on the window dimensions.
+ */
 function createRenderer(): THREE.WebGLRenderer {
   const renderer: THREE.WebGLRenderer = new THREE.WebGLRenderer();
   renderer.domElement.classList.add('fullscreen');
@@ -35,12 +43,20 @@ function createRenderer(): THREE.WebGLRenderer {
   return renderer;
 }
 
+/**
+ * Function to add the WebGL renderer to the DOM.
+ * @param renderer - The WebGL renderer to be added to the DOM.
+ */
 function addRendererToDOM(renderer: THREE.WebGLRenderer): void {
   const ELEMENT_TO_ADD_AFTER: string = 'h1';
   const title: HTMLElement = document.querySelector(ELEMENT_TO_ADD_AFTER)!;
   title.after(renderer.domElement);
 }
 
+/**
+ * Function to create a red cube mesh.
+ * @returns {THREE.Mesh} A red cube mesh with a size of 1x1x1 units and positioned at (3, 3, 3).
+ */
 function createCube(): THREE.Mesh {
   const geometry: THREE.BoxGeometry = new THREE.BoxGeometry(1, 1, 1); 
   const material: THREE.MeshBasicMaterial = new THREE.MeshBasicMaterial({ color: 'red' }); 
@@ -49,6 +65,9 @@ function createCube(): THREE.Mesh {
   return cube;
 }
 
+/**
+ * Main function to set up the scene, camera, renderer, and cube.
+ */
 function main(): void {
   const SCENE: THREE.Scene = new THREE.Scene();
   const CAMERA: THREE.PerspectiveCamera = createCamera();

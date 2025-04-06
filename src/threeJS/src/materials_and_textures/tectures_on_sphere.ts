@@ -19,18 +19,36 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
+/**
+ * 
+ * @param camera - The camera to be controlled
+ * @param renderer - The renderer to be used
+ * @returns The created OrbitControls instance
+ */
 function createOrbitControls(camera: THREE.PerspectiveCamera, renderer: THREE.WebGLRenderer): OrbitControls {
   const controls: OrbitControls = new OrbitControls(camera, renderer.domElement);
   controls.enableDamping = true;
   return controls;
 }
 
+/**
+ * 
+ * @param controls - The OrbitControls instance to be updated
+ * @param scene - The scene to be rendered
+ * @param camera - The camera to be used
+ * @param renderer - The renderer to be used
+ * @description This function animates the scene by updating the controls and rendering the scene.
+ */
 function animate(controls: OrbitControls, scene: THREE.Scene, camera: THREE.PerspectiveCamera, renderer: THREE.WebGLRenderer): void {
   requestAnimationFrame(() => (animate(controls, scene, camera, renderer)));
   controls.update();
   renderer.render(scene, camera);
 }
 
+/**
+ * Function to create a PerspectiveCamera
+ * @returns A new PerspectiveCamera instance
+ */
 function createCamera(): THREE.PerspectiveCamera {
   const FOV: number = 75;
   const ASPECT_RATIO: number = window.innerWidth / window.innerHeight;
@@ -39,6 +57,11 @@ function createCamera(): THREE.PerspectiveCamera {
   return new THREE.PerspectiveCamera(FOV, ASPECT_RATIO, NEAR, FAR);
 }
 
+/**
+ * Function to create a WebGLRenderer
+ * @description This function creates a WebGLRenderer instance, sets its size, and enables shadows.
+ * @returns A new WebGLRenderer instance
+ */
 function createRenderer(): THREE.WebGLRenderer {
   const renderer: THREE.WebGLRenderer = new THREE.WebGLRenderer();
   renderer.domElement.classList.add('fullscreen');
@@ -50,12 +73,23 @@ function createRenderer(): THREE.WebGLRenderer {
   return renderer;
 }
 
+/**
+ * Function to add the renderer to the DOM
+ * @description This function adds the WebGLRenderer instance to the DOM after a specified element.
+ * @param renderer - The WebGLRenderer instance to be added to the DOM
+ */
 function addRendererToDOM(renderer: THREE.WebGLRenderer): void {
   const ELEMENT_TO_ADD_AFTER: string = 'h1';
   const title: HTMLElement = document.querySelector(ELEMENT_TO_ADD_AFTER)!;
   title.after(renderer.domElement);
 }
 
+/**
+ * 
+ * @param scene - The scene to which the lighting will be added
+ * @description This function adds lighting to the scene, including a directional light.
+ * The directional light is positioned and configured to cast shadows.
+ */
 function addLighting(scene: THREE.Scene): void {
   // const ambientLight: THREE.AmbientLight = new THREE.AmbientLight(0xffffff, 0.5);
   // scene.add(ambientLight);
@@ -68,6 +102,12 @@ function addLighting(scene: THREE.Scene): void {
   scene.add(directionalLight);
 }
 
+/**
+ * 
+ * @param scene - The scene to which the plane will be added
+ * @description This function creates a plane geometry and adds it to the scene.
+ * The plane is positioned and configured to receive shadows.
+ */
 function addPlane(scene: THREE.Scene): void {
   const planeGeometry: THREE.PlaneGeometry = new THREE.PlaneGeometry(10, 10);
   const planeMaterial: THREE.MeshStandardMaterial = new THREE.MeshStandardMaterial({ color: 'gray', side: THREE.DoubleSide });
@@ -78,12 +118,24 @@ function addPlane(scene: THREE.Scene): void {
   scene.add(plane);
 }
 
+/**
+ * 
+ * @param scene - The scene to which the grid helper will be added
+ * @description This function creates a grid helper and adds it to the scene.
+ * The grid helper is positioned to provide a visual reference for the scene.
+ */
 function addGridHelper(scene: THREE.Scene): void {
   const gridHelper: THREE.GridHelper = new THREE.GridHelper(20, 20);
   gridHelper.position.y = -1.1;
   scene.add(gridHelper);
 }
 
+/**
+ * 
+ * @returns A new MeshPhysicalMaterial instance with textures applied
+ * @description This function creates a MeshPhysicalMaterial with various textures applied.
+ * The textures include color, normal, roughness, displacement, and clearcoat maps.
+ */
 function createMaterialWithTextures(): THREE.MeshPhysicalMaterial {
   const textureLoader = new THREE.TextureLoader();
 
@@ -107,6 +159,9 @@ function createMaterialWithTextures(): THREE.MeshPhysicalMaterial {
   return material;
 }
 
+/**
+ * Main function to initialize the scene, camera, renderer, and controls.
+ */
 function main(): void {
   const SCENE: THREE.Scene = new THREE.Scene();
   SCENE.background = new THREE.Color('gray');

@@ -30,11 +30,17 @@ export class GameView {
   private renderer: THREE.WebGLRenderer;
   private sceneElements: THREE.Object3D[] = [];
 
+  /**
+   * Class constructor
+   * @param scene - scene to be rendered
+   * @param camera - camera to be used
+   * @param renderer - renderer to be used
+   * @param maxTime - maximum time for the game
+   */
   constructor(scene: THREE.Scene, camera: THREE.PerspectiveCamera, renderer: THREE.WebGLRenderer, maxTime: number = 69) {
-    
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap; 
-    
+
     this.scene = scene;
     
     camera.position.z = 5;
@@ -74,6 +80,9 @@ export class GameView {
     this.renderer.render(this.scene, this.camera);
   }
 
+  /**
+   * Class getters
+   */
   public getGameContainer(): HTMLDivElement {
     return this.gameContainer;
   }
@@ -94,20 +103,44 @@ export class GameView {
     return this.resetButton;
   }
 
+  /**
+   * 
+   * @param score - score to be updated
+   * @description This method updates the score of the game. The score is rounded to the nearest integer.
+   */
   public updateScore(score: number): void {
     this.scoreElement.textContent = `Score: ${Math.floor(score)}`;
   }
   
+  /**
+   * 
+   * @param time - time to be updated
+   * @description This method updates the time of the game. The time is rounded to the nearest integer.
+   */
   public updateTime(time: number): void {
     this.timeElement.textContent = `Time: ${time}`;
   }
 
+  /**
+   * 
+   * @param scene - scene to be rendered
+   * @description This method adds the elements to the scene. The elements are added to the scene in the order they are in the array.
+   * The elements are added to the scene in the order they are in the array.
+   */
   public addElements(scene: THREE.Scene) {
     this.sceneElements.forEach(element => {
       scene.add(element);
     });
   }
 
+  /**
+   * 
+   * @param tag - tag to be created
+   * @param className - class name to be added
+   * @returns the created element
+   * @description This method creates an element with the given tag and class name. The class name is optional.
+   * The element is created with the given tag and class name. The class name is optional.
+   */
   protected static createElement(tag: string, className?: string): HTMLElement {
     const element = document.createElement(tag);
     if (className) {

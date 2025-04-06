@@ -28,13 +28,20 @@ export class GameModel {
   private readonly minimunBallSize: number = 0.5;
   private readonly maximunBallSize: number = 2;
 
+  /**
+   * Class constructor
+   * @param maxtime - maximum time for the game
+   */
   constructor(maxtime: number = 69) {
     this.score = 0;
     this.time = maxtime;
     this.maxTime = maxtime;
     this.ball = this.randomBall()
   }
-
+  
+  /**
+   * Class getters and setters
+   */
   public getScore(): number {
     return this.score;
   }
@@ -65,6 +72,12 @@ export class GameModel {
     this.ball = this.randomBall();
   }
 
+  /**
+   * 
+   * @returns a random ball with a random size and position
+   * @description This method creates a random ball with a random size and position. The size of the ball is between 0.5 and 2.0.
+   * The position of the ball is random and is between -8 and 8 in the x and y axis, and between -2 and 2 in the z axis.
+   */
   private randomBall(): { ball: THREE.Mesh, value: number } {
     let value = 100;
     let size = Math.random() * (this.maximunBallSize - this.minimunBallSize) + this.minimunBallSize;

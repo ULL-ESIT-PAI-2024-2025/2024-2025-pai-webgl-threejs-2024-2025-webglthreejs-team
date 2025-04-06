@@ -29,6 +29,14 @@ export class GameController {
   private gameRunning: boolean = false;
   private lastTimeUpdate = Date.now();
 
+  /**
+   * Class constructor
+   * @param model - GameModel for the game
+   * @param view - GameView for the game
+   * @param scene - THREE.Scene to render the game
+   * @param camera - THREE.PerspectiveCamera for the scene
+   * @param renderer - THREE.WebGLRenderer to render the scene
+   */
   constructor(model: GameModel, view: GameView, scene: THREE.Scene, camera: THREE.PerspectiveCamera, renderer: THREE.WebGLRenderer) {
     this.scene = scene;
     this.camera = camera;
@@ -37,18 +45,33 @@ export class GameController {
     this.view = view;
   }
 
+  /**
+   * Initialize the game
+   * @description This method initializes the game by starting the game loop, resetting the game, 
+   * and calculating the intersection of the ball with the mouse click.
+   */
   public initialize(): void {
     this.startGame();
     this.resetGame();  
     this.calculateIntersection();
   }
 
+  /**
+   * Start the game loop
+   * @description This method starts the game loop by appending the renderer to the game container,
+   * adding the ball to the scene, and starting the animation.
+   */
   public startGameLoop(): void {
     this.view.getGameContainer().appendChild(this.renderer.domElement);
     this.scene.add(this.model.getBall().ball);
     this.animate();
   }
 
+  /**
+   * Calculate the intersection of the ball with the mouse click
+   * @description This method calculates the intersection of the ball with the mouse click using
+   * a raycaster. If the ball is clicked, the score is updated and the ball is removed from the scene.
+   */
   private calculateIntersection(): void {
     const raycaster = new THREE.Raycaster();
     raycaster.near = 0.01;
@@ -72,20 +95,21 @@ export class GameController {
     })
   }
 
+  /**
+   * Function to animate the game
+   */
   private animate(): void {
     if (!this.gameRunning) {
       return;
     }
-  
     requestAnimationFrame(() => this.animate());
-  
     const now = Date.now();
     if (now - this.lastTimeUpdate >= 1000) {
       const newTime = this.model.getTime() - 1;
       this.model.setTime(newTime);
       this.view.updateTime(newTime);
       this.lastTimeUpdate = now;
-  
+
       if (newTime <= 0) {
         this.stopGame();
         return;
@@ -95,6 +119,11 @@ export class GameController {
     this.renderer.render(this.scene, this.camera);
   }
   
+  /**
+   * Function to reset the game
+   * @description This method resets the game by removing the ball from the scene, stopping the game,
+   * updating the score and time, and resetting the game model.
+   */
   private resetGame(): void {
     this.view.getResetButton().addEventListener('click', () => {
       this.scene.remove(this.model.getBall().ball);
@@ -106,6 +135,12 @@ export class GameController {
     });
   }
 
+  /**
+   * Function to start the game
+   * @description This method starts the game by clearing the scene, adding elements to the view,
+   * setting the game running flag to true, resetting the game model, and updating the score and time.
+   * It also starts the game loop.
+   */
   private startGame(): void {
     this.view.getStartButton().addEventListener('click', () => {
       this.scene.clear();
@@ -118,11 +153,15 @@ export class GameController {
     });
   }
 
+  /**
+   * Function to stop the game
+   * @description This method stops the game by setting the game running flag to false,
+   * removing the ball from the scene, updating the score and time.
+   */
   private stopGame(): void {
     this.gameRunning = false;
     this.scene.remove(this.model.getBall().ball)
     this.view.updateScore(this.model.getScore());
     this.view.updateTime(0);
   }
-
 }
