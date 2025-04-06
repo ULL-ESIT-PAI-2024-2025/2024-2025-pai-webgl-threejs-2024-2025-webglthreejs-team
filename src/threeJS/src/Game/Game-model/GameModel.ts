@@ -78,7 +78,7 @@ export class GameModel {
    * @description This method creates a random ball with a random size and position. The size of the ball is between 0.5 and 2.0.
    * The position of the ball is random and is between -8 and 8 in the x and y axis, and between -2 and 2 in the z axis.
    */
-  private randomBall(): { ball: THREE.Mesh, value: number } {
+    private randomBall(): { ball: THREE.Mesh, value: number } {
     let value = 100;
     let size = Math.random() * (this.maximunBallSize - this.minimunBallSize) + this.minimunBallSize;
     value *= 1 / size;

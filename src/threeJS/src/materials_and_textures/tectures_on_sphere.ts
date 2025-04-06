@@ -15,7 +15,6 @@
  * @see {@link https://github.com/ULL-ESIT-PAI-2024-2025/2024-2025-pai-webgl-threejs-2024-2025-webglthreejs-team.git}
  */
 
-
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
@@ -137,15 +136,15 @@ function addGridHelper(scene: THREE.Scene): void {
  * The textures include color, normal, roughness, displacement, and clearcoat maps.
  */
 function createMaterialWithTextures(): THREE.MeshPhysicalMaterial {
-  const textureLoader = new THREE.TextureLoader();
+  const textureLoader: THREE.TextureLoader = new THREE.TextureLoader();
 
-  const colorTexture = textureLoader.load('./TilesMosaicPennyround001/TilesMosaicPennyround001_COL_2K.png'); // Textura de color
-  const normalTexture = textureLoader.load('./TilesMosaicPennyround001/TilesMosaicPennyround001_NRM_2K.png'); // Textura normal
-  const roughnessTexture = textureLoader.load('./TilesMosaicPennyround001/TilesMosaicPennyround001_REFL_2K.png'); // Textura de rugosidad
-  const displacementTexture = textureLoader.load('./TilesMosaicPennyround001/TilesMosaicPennyround001_DISP_2K.png'); // Textura de desplazamiento
-  const clearcoatTexture = textureLoader.load('./TilesMosaicPennyround001/TilesMosaicPennyround001_GLOSS_2K.png'); // Textura de recubrimiento
+  const colorTexture: THREE.Texture = textureLoader.load('./TilesMosaicPennyround001/TilesMosaicPennyround001_COL_2K.png'); // Textura de color
+  const normalTexture: THREE.Texture = textureLoader.load('./TilesMosaicPennyround001/TilesMosaicPennyround001_NRM_2K.png'); // Textura normal
+  const roughnessTexture: THREE.Texture = textureLoader.load('./TilesMosaicPennyround001/TilesMosaicPennyround001_REFL_2K.png'); // Textura de rugosidad
+  const displacementTexture: THREE.Texture = textureLoader.load('./TilesMosaicPennyround001/TilesMosaicPennyround001_DISP_2K.png'); // Textura de desplazamiento
+  const clearcoatTexture: THREE.Texture = textureLoader.load('./TilesMosaicPennyround001/TilesMosaicPennyround001_GLOSS_2K.png'); // Textura de recubrimiento
 
-  const material = new THREE.MeshPhysicalMaterial({
+  const material: THREE.MeshPhysicalMaterial = new THREE.MeshPhysicalMaterial({
     map: colorTexture, 
     normalMap: normalTexture, 
     roughnessMap: roughnessTexture, 
@@ -168,9 +167,9 @@ function main(): void {
   addLighting(SCENE);
   addPlane(SCENE);
   addGridHelper(SCENE);
-  const GEOMETRY = new THREE.SphereGeometry(1, 200, 200);
-  const MATERIAL = createMaterialWithTextures();
-  const SPHERE = new THREE.Mesh(GEOMETRY, MATERIAL);
+  const GEOMETRY: THREE.SphereGeometry = new THREE.SphereGeometry(1, 200, 200);
+  const MATERIAL: THREE.MeshPhysicalMaterial = createMaterialWithTextures();
+  const SPHERE: THREE.Mesh = new THREE.Mesh(GEOMETRY, MATERIAL);
   SPHERE.castShadow = true;
   SCENE.add(SPHERE);
   const CAMERA: THREE.PerspectiveCamera = createCamera();
