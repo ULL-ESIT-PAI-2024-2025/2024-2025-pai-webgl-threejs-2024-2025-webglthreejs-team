@@ -15,7 +15,7 @@
  */
 
 
-import ClockMarks from "./ColckMarks";
+import ClockMarks from './ColckMarks';
 import * as THREE from 'three';
 
 /**

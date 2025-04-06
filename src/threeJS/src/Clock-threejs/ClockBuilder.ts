@@ -14,12 +14,12 @@
  * @see {@link https://github.com/ULL-ESIT-PAI-2024-2025/2024-2025-pai-webgl-threejs-2024-2025-webglthreejs-team.git}
  */
 
-import ClockHands from "./ClockParts/ClockHands";
-import ClockFace from "./ClockParts/ClockFace";
-import ClockCase from "./ClockParts/ClockCase";
-import ClockHandsBuilder from "./ClockParts/Builders/ClockHandsBuilder";
-import ClockFaceBuilder from "./ClockParts/Builders/ClockFaceBuilder";
-import Clock from "./Colck";
+import ClockHands from './ClockParts/ClockHands';
+import ClockFace from './ClockParts/ClockFace';
+import ClockCase from './ClockParts/ClockCase';
+import ClockHandsBuilder from './ClockParts/Builders/ClockHandsBuilder';
+import ClockFaceBuilder from './ClockParts/Builders/ClockFaceBuilder';
+import Clock from './Colck';
 
 /**
  * Utility class responsible for assembling and returning a complete Clock object.

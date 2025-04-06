@@ -15,10 +15,10 @@
  * @see {@link https://github.com/ULL-ESIT-PAI-2024-2025/2024-2025-pai-webgl-threejs-2024-2025-webglthreejs-team.git}
  */
 
-import { GameView } from "../Game-view/GameView";
-import { GameModel } from "../Game-model/GameModel";
+import { GameView } from '../Game-view/GameView';
+import { GameModel } from '../Game-model/GameModel';
 
-import * as THREE from "three";
+import * as THREE from 'three';
 
 export class GameController {
   private model: GameModel;

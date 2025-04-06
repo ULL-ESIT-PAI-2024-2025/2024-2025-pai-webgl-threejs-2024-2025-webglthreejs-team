@@ -9,9 +9,9 @@
  * @description Programa principal que inicializa el canvas y dibuja un triángulo utilizando la clase Triangle.
  *
  */
-import Triangle from "./triangle.js";
+import Triangle from './triangle.js';
 function main() {
-    const triangle = new Triangle("my_Canvas");
+    const triangle = new Triangle('my_Canvas');
     triangle.draw();
 }
 main();

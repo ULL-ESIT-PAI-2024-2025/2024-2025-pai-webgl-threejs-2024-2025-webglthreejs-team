@@ -14,7 +14,7 @@
  * @see {@link https://github.com/ULL-ESIT-PAI-2024-2025/2024-2025-pai-webgl-threejs-2024-2025-webglthreejs-team.git}
  */
 
-import Hand from "./Hand";
+import Hand from './Hand';
 import * as THREE from 'three';
 
 /**

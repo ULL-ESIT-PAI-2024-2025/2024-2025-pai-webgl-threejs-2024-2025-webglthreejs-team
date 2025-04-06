@@ -14,8 +14,8 @@
  * @see {@link https://github.com/ULL-ESIT-PAI-2024-2025/2024-2025-pai-webgl-threejs-2024-2025-webglthreejs-team.git}
  */
 
-import Hand from "../Hand";
-import ClockHands from "../ClockHands";
+import Hand from '../Hand';
+import ClockHands from '../ClockHands';
 
 /**
  * Builder class responsible for creating and assembling clock hands.

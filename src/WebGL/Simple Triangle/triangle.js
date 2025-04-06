@@ -84,7 +84,7 @@ class Triangle {
      */
     bindAttributes(vertexBuffer, shaderProgram) {
         this.context.bindBuffer(this.context.ARRAY_BUFFER, vertexBuffer);
-        const coord = this.context.getAttribLocation(shaderProgram, "coordinates");
+        const coord = this.context.getAttribLocation(shaderProgram, 'coordinates');
         this.context.vertexAttribPointer(coord, 2, this.context.FLOAT, false, 0, 0);
         this.context.enableVertexAttribArray(coord);
     }

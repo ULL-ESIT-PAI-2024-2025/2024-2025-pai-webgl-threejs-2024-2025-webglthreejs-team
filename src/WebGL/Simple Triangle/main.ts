@@ -10,10 +10,10 @@
  *
  */
 
-import Triangle from "./triangle.js";
+import Triangle from './triangle.js';
 
 function main() {
-  const triangle = new Triangle("my_Canvas");
+  const triangle = new Triangle('my_Canvas');
   triangle.draw();
 }
 
