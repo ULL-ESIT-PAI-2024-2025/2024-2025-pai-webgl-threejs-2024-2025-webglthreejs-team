@@ -14,38 +14,30 @@
  * @see {@link https://github.com/ULL-ESIT-PAI-2024-2025/2024-2025-pai-webgl-threejs-2024-2025-webglthreejs-team.git}
  */
 
-
 import * as THREE from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import Sphere from '../figures/Shapes/Sphere';
-import BasePlane from '../figures/Shapes/BasePlane';
+import PerspectiveFactory from '../Camera/CamerasFactory/PersepctiveFacotry';
+import View from './View';
+import BasePlaneFactory from '../figures/Shapes/BasePlaneFactory';
+import SphereFactory from '../figures/Shapes/SphereFactory';
 
 function main(): void {
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(75, window.innerWidth /window.innerHeight, 0.1, 1000);
-  camera.position.set(0, 2, 5);
-  const renderer = new THREE.WebGLRenderer();
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  document.body.appendChild(renderer.domElement);
-
-  const directionalLight = new THREE.DirectionalLight('white', 5);
+  const camerasFactory: PerspectiveFactory = new PerspectiveFactory();
+  const sphereFactroy: SphereFactory = new SphereFactory();
+  const basePlaneFactory: BasePlaneFactory = new BasePlaneFactory();
+  const directionalLight: THREE.DirectionalLight = new THREE.DirectionalLight('white', 5);
   directionalLight.position.set(5, 5, 5);
-  scene.add(directionalLight);
-  let sphere: Sphere = new Sphere(1, new THREE.MeshLambertMaterial({ color: 'white' })); 
-  scene.add(sphere.getSphere());
-  let plane: BasePlane = new BasePlane(10, new THREE.MeshLambertMaterial({ color: 'grey' }));
-  plane.setPosition(0, -1, 0);
-  scene.add(plane.getPlane());
-
-  function animate() {
-    requestAnimationFrame(animate);
-    renderer.render(scene, camera);
-  }
-  animate();
-  const controls = new OrbitControls(camera, renderer.domElement);
-  controls.enableDamping = true;
+  const view: View = new View(
+    camerasFactory.createCameras(), 
+    new THREE.Object3D().add(
+      sphereFactroy.createShape(1, new THREE.MeshPhongMaterial({ color: 'white'})),
+      basePlaneFactory.createShape(10, new THREE.MeshPhongMaterial({ color: 'grey'}))
+    ),
+    new THREE.Group().add(directionalLight)
+  );
+  view.render(() => {});
 }
 
 main();
+
 
 

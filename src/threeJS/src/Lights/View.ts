@@ -16,12 +16,53 @@
 
 
 import * as THREE from 'three'
-class View {
-  private readonly scene : THREE.Scene = new THREE.Scene()
-  private readonly renderer : THREE.WebGLRenderer = new THREE.WebGLRenderer({ alpha: true })
-  constructor(private readonly camera : THREE.Camera, private lights: THREE.Light) {
-    let hola = new THREE.Mesh();
-    
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
+export default class View {
+  private readonly scene : THREE.Scene = new THREE.Scene()
+  private readonly renderer : THREE.WebGLRenderer = new THREE.WebGLRenderer();
+  constructor(
+    private readonly camera : THREE.Camera, 
+    private readonly shapes: THREE.Object3D, 
+    private readonly lights: THREE.Group
+  ) {
+    this.renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(this.renderer.domElement);
+    const controls = new OrbitControls(this.camera, this.renderer.domElement);
+    controls.enableDamping = true;
+    this.scene.add(this.shapes);
+    this.scene.add(this.lights);
+  }
+
+  public enableShadows(): void {
+    this.renderer.shadowMap.enabled = true;
+    this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    this.renderer.shadowMap.autoUpdate = true;
+    this.shapes.traverse((object) => {
+      object.castShadow = true;
+      object.receiveShadow = true;
+    });
+
+    this.lights.traverse((light) => {
+      light.castShadow = true;
+    });
+  }
+  
+  /**
+   * Animates the scene by rendering it continuously.
+   * Adds the shapes to the scene and renders the scene with the camera.
+   * @private
+   */
+  private animate(animation: (lights: THREE.Group) => void | undefined): void {
+    requestAnimationFrame(() => this.animate(animation));
+    if (animation) animation(this.lights);
+    this.renderer.render(this.scene, this.camera);
+  }
+  
+  /**
+   * Starts the rendering process by initiating the animation loop.
+   */
+  public render(animation: (lights: THREE.Group) => void | undefined): void {
+    this.animate(animation);
   }
 }

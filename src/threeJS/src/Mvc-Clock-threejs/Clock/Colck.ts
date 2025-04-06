@@ -14,9 +14,9 @@
  * @see {@link https://github.com/ULL-ESIT-PAI-2024-2025/2024-2025-pai-webgl-threejs-2024-2025-webglthreejs-team.git}
  */
 
-import ClockHands from "./ColckParts/ClockHands";
-import ClockFace from "./ColckParts/ClockFace";
-import ClockCase from "./ColckParts/ClockCase";
+import ClockHands from "./ClockParts/ClockHands";
+import ClockFace from "./ClockParts/ClockFace";
+import ClockCase from "./ClockParts/ClockCase";
 import * as THREE from 'three';
 
 export default class Clock { 
@@ -25,7 +25,9 @@ export default class Clock {
     private readonly clockFace: ClockFace,
     private readonly clockCase: ClockCase
   ) { }
-  public updateClock(): void { this.clockHands.updateClockHands(); }
+  public updateClock(hours: number, minutes: number, seconds: number): void { 
+    this.clockHands.updateClockHands(hours, minutes, seconds); 
+  }
 
   public render(scene: THREE.Scene): void { 
     this.clockFace.renderClockFace(scene); 

@@ -29,15 +29,19 @@ export default class ClockView {
     this.clock = ClockBuilder.buildClock('black', 'white', 2);
     this.camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 500);
     this.camera.position.z = 5;
+    document.body.appendChild(this.renderer .domElement);
     this.clock.render(this.scene);    
     const controls = new OrbitControls(this.camera, this.renderer.domElement);
     controls.enableDamping = true;
   }
 
-  public getRenderer(): THREE.WebGLRenderer { return this.renderer; }
-
-  public render(): void {
+  private animate(): void {
+    requestAnimationFrame(() => this.animate());
     this.clock.updateClock();
     this.renderer.render(this.scene, this.camera);
+  }
+
+  public render(): void {
+    this.animate();
   }
 }

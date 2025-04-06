@@ -14,11 +14,11 @@
  * @see {@link https://github.com/ULL-ESIT-PAI-2024-2025/2024-2025-pai-webgl-threejs-2024-2025-webglthreejs-team.git}
  */
 
-import ClockHands from "./ColckParts/ClockHands";
-import ClockFace from "./ColckParts/ClockFace";
-import ClockCase from "./ColckParts/ClockCase";
-import ClockHandsBuilder from "./ColckParts/ClockHandsBuilder";
-import ClockFaceBuilder from "./ColckParts/ClockFaceBuilder";
+import ClockHands from "./ClockParts/ClockHands";
+import ClockFace from "./ClockParts/ClockFace";
+import ClockCase from "./ClockParts/ClockCase";
+import ClockHandsBuilder from "./ClockParts/ClockHandsBuilder";
+import ClockFaceBuilder from "./ClockParts/ClockFaceBuilder";
 import Clock from "./Colck";
 
 export default class ClockBuilder {

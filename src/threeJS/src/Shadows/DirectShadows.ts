@@ -16,50 +16,30 @@
 
 
 import * as THREE from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import Sphere from '../figures/Shapes/Sphere';
-import BasePlane from '../figures/Shapes/BasePlane';
+import PerspectiveFactory from '../Camera/CamerasFactory/PersepctiveFacotry';
+import View from '../Lights/View';
+import BasePlaneFactory from '../figures/Shapes/BasePlaneFactory';
+import SphereFactory from '../figures/Shapes/SphereFactory';
 
 function main(): void {
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(75, window.innerWidth /window.innerHeight, 0.1, 1000);
-  camera.position.set(0, 2, 5);
-  const renderer = new THREE.WebGLRenderer();
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  document.body.appendChild(renderer.domElement);
-
-  // Sombras para el renderizador
-  renderer.shadowMap.enabled = true;
-
-  const directionalLight = new THREE.DirectionalLight('white', 5);
+  const camerasFactory: PerspectiveFactory = new PerspectiveFactory();
+  const sphereFactroy: SphereFactory = new SphereFactory();
+  const basePlaneFactory: BasePlaneFactory = new BasePlaneFactory();
+  const shapes: THREE.Object3D = new THREE.Object3D();
+  const directionalLight: THREE.DirectionalLight = new THREE.DirectionalLight('white', 5);
   directionalLight.position.set(5, 5, 5);
-
-  // Sombras para la luz direccional
-  directionalLight.castShadow = true;
-
-  scene.add(directionalLight);
-  let sphere: Sphere = new Sphere(1, new THREE.MeshLambertMaterial({ color: 'white' }));
-  
-  // Sombras para la esfera
-  sphere.getShape().castShadow = true;
-
-  scene.add(sphere.getShape());
-  let plane: BasePlane = new BasePlane(10, new THREE.MeshLambertMaterial({ color: 'grey' }));
-
-  // Sombras para el plano
-  plane.getShape().receiveShadow = true;
-
-  plane.setPosition(0, -2, 0);
-  scene.add(plane.getShape());
-  function animate() {
-    requestAnimationFrame(animate);
-    renderer.render(scene, camera);
-  }
-  animate();
-  const controls = new OrbitControls(camera, renderer.domElement);
-  controls.enableDamping = true;
+  shapes.add(sphereFactroy.createShape(1, new THREE.MeshPhongMaterial({ color: 'white'})));
+  shapes.add(basePlaneFactory.createShape(10, new THREE.MeshPhongMaterial({ color: 'grey'})));
+  const view: View = new View(
+    camerasFactory.createCameras(), 
+    new THREE.Object3D().add(
+      sphereFactroy.createShape(1, new THREE.MeshPhongMaterial({ color: 'white'})),
+      basePlaneFactory.createShape(10, new THREE.MeshPhongMaterial({ color: 'grey'}))
+    ),
+    new THREE.Group().add(directionalLight)
+  );
+  view.enableShadows();
+  view.render((light) => {light.rotation.y += 0.01});
 }
 
 main();
-
-

@@ -21,6 +21,7 @@ export default class BasePlaneFactory implements ShapesFactory {
   public createShape(size: number, texture: THREE.Material): THREE.Mesh {
     const plane = new THREE.Mesh(new THREE.PlaneGeometry(size, size), texture);
     plane.rotation.x = -Math.PI / 2; 
+    plane.position.y = -1;
     return plane;
   }
 }

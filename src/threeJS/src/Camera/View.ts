@@ -36,8 +36,6 @@ export default class CamerasView {
   constructor(private readonly camera: THREE.Camera, private shapes: THREE.Object3D) {
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(this.renderer.domElement);
-    this.camera.position.z = 5;
-    camera.position.y = 2;
     const controls = new OrbitControls(this.camera, this.renderer.domElement);
     controls.enableDamping = true;
   }
